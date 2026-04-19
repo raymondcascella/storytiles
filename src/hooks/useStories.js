@@ -20,7 +20,11 @@ export function useStories() {
   function save(story) {
     const stories = loadAll()
     const resolved = resolveTitle(story.title, stories)
-    localStorage.setItem(STORAGE_KEY, JSON.stringify([...stories, { ...story, title: resolved }]))
+    try {
+      localStorage.setItem(STORAGE_KEY, JSON.stringify([...stories, { ...story, title: resolved }]))
+    } catch (err) {
+      throw new Error('Failed to save story: ' + err.message)
+    }
     return resolved
   }
 

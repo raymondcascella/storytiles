@@ -42,6 +42,7 @@ export default function App() {
       setCurrentStory(createNewStory())
       setIsDirty(false)
       setSelectedIcon(null)
+      setSidebarOpen(false)
     })
   }
 
@@ -68,6 +69,7 @@ export default function App() {
     setIsDirty(false)
     setShowLoad(false)
     setSelectedIcon(null)
+    setSidebarOpen(false)
   }
 
   function handleTitleChange(panelId, newTitle) {
