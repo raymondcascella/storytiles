@@ -28,5 +28,9 @@ export function useStories() {
     return resolved
   }
 
-  return { loadAll, save, resolveTitle }
+  function remove(title) {
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(loadAll().filter(s => s.title !== title)))
+  }
+
+  return { loadAll, save, resolveTitle, remove }
 }

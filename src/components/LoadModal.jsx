@@ -1,4 +1,13 @@
-export function LoadModal({ stories, onLoad, onClose }) {
+import { useState } from 'react'
+
+export function LoadModal({ stories: initial, onLoad, onDelete, onClose }) {
+  const [stories, setStories] = useState(initial)
+
+  function handleDelete(title) {
+    onDelete(title)
+    setStories(prev => prev.filter(s => s.title !== title))
+  }
+
   return (
     <div className="modal-backdrop">
       <div className="modal">
@@ -8,10 +17,11 @@ export function LoadModal({ stories, onLoad, onClose }) {
         ) : (
           <ul className="story-list">
             {stories.map(story => (
-              <li key={story.title}>
+              <li key={story.title} className="story-list-item">
                 <button className="story-item btn" onClick={() => onLoad(story)}>
                   {story.title}
                 </button>
+                <button className="story-delete-btn" onClick={() => handleDelete(story.title)}>✕</button>
               </li>
             ))}
           </ul>

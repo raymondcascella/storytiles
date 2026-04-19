@@ -1,7 +1,7 @@
 import { useRef } from 'react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
-export function Panel({ panel, selectedIcon, onTitleChange, onCaptionChange, onIconPlace, onIconMove, onRemove }) {
+export function Panel({ panel, selectedIcon, onCaptionChange, onIconPlace, onIconMove, onRemoveIcon, onRemove }) {
   const zoneRef = useRef(null)
 
   function getRelativeCoords(e) {
@@ -25,6 +25,7 @@ export function Panel({ panel, selectedIcon, onTitleChange, onCaptionChange, onI
 
   function handleDrop(e) {
     e.preventDefault()
+    e.stopPropagation()
     const data = JSON.parse(e.dataTransfer.getData('application/json'))
     const { x, y } = getRelativeCoords(e)
     if (data.type === 'sidebar-icon') {
@@ -46,13 +47,7 @@ export function Panel({ panel, selectedIcon, onTitleChange, onCaptionChange, onI
   return (
     <div className="panel">
       <div className="panel-header">
-        <input
-          className="panel-title"
-          value={panel.title}
-          onChange={e => onTitleChange(panel.id, e.target.value)}
-          placeholder="Panel title"
-        />
-        <button className="panel-remove-btn" onClick={() => onRemove(panel.id)} title="Remove panel">✕</button>
+        <button className="panel-remove-btn" onClick={() => onRemove(panel.id)} title="Remove panel">X</button>
       </div>
       <div
         ref={zoneRef}
@@ -65,7 +60,7 @@ export function Panel({ panel, selectedIcon, onTitleChange, onCaptionChange, onI
           <span
             key={icon.id}
             className="placed-icon"
-            style={{ left: `${icon.x}%`, top: `${icon.y}%`, color: icon.color ?? '#000000' }}
+            style={{ left: `${icon.x}%`, top: `${icon.y}%`, color: icon.color ?? '#000000', fontSize: { small: '32px', medium: '48px', large: '64px' }[icon.size] ?? '32px' }}
             draggable
             onDragStart={e => handleIconDragStart(e, icon)}
           >

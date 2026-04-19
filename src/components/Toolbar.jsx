@@ -3,7 +3,8 @@ export function Toolbar({ onCreateStory, onSaveStory, onLoadStory }) {
     <div className="toolbar">
       <button className="btn btn-secondary" onClick={onCreateStory}>Create Story</button>
       <button className="btn btn-primary" onClick={onSaveStory}>Save Story</button>
-      <button className="btn btn-secondary" onClick={onLoadStory}>Load Story</button>
+      <button className="btn" onClick={onLoadStory}>Load Story</button>
+      <span className="toolbar-title">Story Tiles</span>
     </div>
   )
 }

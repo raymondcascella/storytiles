@@ -26,6 +26,7 @@ export default function App() {
   const [showLoad, setShowLoad] = useState(false)
   const [selectedIcon, setSelectedIcon] = useState(null)
   const [iconColor, setIconColor] = useState('#000000')
+  const [iconSize, setIconSize] = useState('small')
 
   function withDirtyCheck(action) {
     if (!isDirty) { action(); return }
@@ -70,11 +71,8 @@ export default function App() {
     setSelectedIcon(null)
   }
 
-  function handleTitleChange(panelId, newTitle) {
-    setCurrentStory(prev => ({
-      ...prev,
-      panels: prev.panels.map(p => p.id === panelId ? { ...p, title: newTitle } : p),
-    }))
+  function handleTitleChange(_id, newTitle) {
+    setCurrentStory(prev => ({ ...prev, title: newTitle }))
     setIsDirty(true)
   }
 
@@ -91,12 +89,11 @@ export default function App() {
       ...prev,
       panels: prev.panels.map(p =>
         p.id === panelId
-          ? { ...p, icons: [...p.icons, { id: crypto.randomUUID(), iconName, x, y, color: iconColor }] }
+          ? { ...p, icons: [...p.icons, { id: crypto.randomUUID(), iconName, x, y, color: iconColor, size: iconSize }] }
           : p
       ),
     }))
     setIsDirty(true)
-    setSelectedIcon(null)
   }
 
   function handleIconMove(fromPanelId, iconId, toPanelId, x, y) {
@@ -106,6 +103,8 @@ export default function App() {
       return {
         ...prev,
         panels: prev.panels.map(p => {
+          if (p.id === fromPanelId && p.id === toPanelId)
+            return { ...p, icons: p.icons.map(i => i.id === iconId ? { ...i, x, y } : i) }
           if (p.id === fromPanelId) return { ...p, icons: p.icons.filter(i => i.id !== iconId) }
           if (p.id === toPanelId) return { ...p, icons: [...p.icons, { ...icon, x, y }] }
           return p
@@ -117,6 +116,16 @@ export default function App() {
 
   function handleAddPanel() {
     setCurrentStory(prev => ({ ...prev, panels: [...prev.panels, createPanel()] }))
+    setIsDirty(true)
+  }
+
+  function handleRemoveIcon(panelId, iconId) {
+    setCurrentStory(prev => ({
+      ...prev,
+      panels: prev.panels.map(p =>
+        p.id === panelId ? { ...p, icons: p.icons.filter(i => i.id !== iconId) } : p
+      ),
+    }))
     setIsDirty(true)
   }
 
@@ -144,6 +153,7 @@ export default function App() {
           onCaptionChange={handleCaptionChange}
           onIconPlace={handleIconPlace}
           onIconMove={handleIconMove}
+          onRemoveIcon={handleRemoveIcon}
           onAddPanel={handleAddPanel}
           onRemovePanel={handleRemovePanel}
         />
@@ -152,12 +162,15 @@ export default function App() {
           onSelectIcon={handleSelectIcon}
           iconColor={iconColor}
           onColorChange={setIconColor}
+          iconSize={iconSize}
+          onSizeChange={setIconSize}
         />
       </div>
       {showLoad && (
         <LoadModal
           stories={stories.loadAll()}
           onLoad={handleLoad}
+          onDelete={title => stories.remove(title)}
           onClose={() => setShowLoad(false)}
         />
       )}
