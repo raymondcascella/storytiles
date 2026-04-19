@@ -20,6 +20,7 @@ export function Panel({ panel, selectedIcon, onTitleChange, onCaptionChange, onI
 
   function handleDragOver(e) {
     e.preventDefault()
+    e.dataTransfer.dropEffect = 'move'
   }
 
   function handleDrop(e) {
