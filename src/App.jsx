@@ -25,6 +25,7 @@ export default function App() {
   const [confirmState, setConfirmState] = useState(null)
   const [showLoad, setShowLoad] = useState(false)
   const [selectedIcon, setSelectedIcon] = useState(null)
+  const [iconColor, setIconColor] = useState('#000000')
 
   function withDirtyCheck(action) {
     if (!isDirty) { action(); return }
@@ -90,7 +91,7 @@ export default function App() {
       ...prev,
       panels: prev.panels.map(p =>
         p.id === panelId
-          ? { ...p, icons: [...p.icons, { id: crypto.randomUUID(), iconName, x, y }] }
+          ? { ...p, icons: [...p.icons, { id: crypto.randomUUID(), iconName, x, y, color: iconColor }] }
           : p
       ),
     }))
@@ -143,6 +144,8 @@ export default function App() {
         <IconSidebar
           selectedIcon={selectedIcon}
           onSelectIcon={handleSelectIcon}
+          iconColor={iconColor}
+          onColorChange={setIconColor}
         />
       </div>
       {showLoad && (

@@ -18,14 +18,14 @@
   --ink: #111111;
   --border: #111111;
   --panel-bg: #ffffff;
-  --panel-width: 280px;
-  --panel-height: 420px;
+  --panel-width: 320px;
+  --panel-height: 460px;
   --ink-shadow: 4px 4px 0 var(--ink);
   --ink-border: 3px solid var(--ink);
 }
 
 body {
-  font-family: 'Bangers', 'Impact', system-ui, sans-serif;
+  font-family: system-ui, -apple-system, sans-serif;
   background: var(--bg);
   color: var(--text);
   min-height: 100vh;
@@ -53,16 +53,16 @@ body {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  padding: 8px 16px;
-  min-height: 44px;
+  padding: 10px 18px;
+  min-height: 48px;
   background: var(--surface);
   border: var(--ink-border);
   border-radius: 0;
   box-shadow: 3px 3px 0 var(--ink);
-  font-family: inherit;
+  font-family: system-ui, -apple-system, sans-serif;
   font-size: 15px;
   font-weight: 700;
-  letter-spacing: 0.04em;
+  letter-spacing: 0.03em;
   text-transform: uppercase;
   cursor: pointer;
   transition: transform 0.08s, box-shadow 0.08s;
@@ -94,15 +94,6 @@ body {
   color: var(--text);
 }
 
-.btn-neon {
-  background: var(--neon);
-  color: var(--ink);
-}
-
-.btn-neon:hover {
-  background: var(--neon-hover);
-}
-
 .btn:focus-visible {
   outline: 3px solid var(--accent);
   outline-offset: 2px;
@@ -120,21 +111,11 @@ body {
 .toolbar {
   display: flex;
   gap: 10px;
-  padding: 10px 14px;
+  padding: 10px 16px;
   background: var(--ink);
   border-bottom: var(--ink-border);
   flex-shrink: 0;
   align-items: center;
-}
-
-.toolbar-title {
-  font-size: 22px;
-  font-weight: 900;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  color: var(--neon);
-  text-shadow: 2px 2px 0 var(--accent);
-  margin-right: auto;
 }
 
 .toolbar .btn {
@@ -142,11 +123,11 @@ body {
   color: #fff;
   border-color: #fff;
   box-shadow: 3px 3px 0 rgba(255,255,255,0.3);
-  font-size: 13px;
+  font-size: 14px;
 }
 
 .toolbar .btn:hover {
-  background: rgba(255,255,255,0.1);
+  background: rgba(255,255,255,0.12);
   box-shadow: 4px 4px 0 rgba(255,255,255,0.3);
 }
 
@@ -180,8 +161,8 @@ body {
 .panels-container {
   display: flex;
   flex-direction: row;
-  gap: 20px;
-  padding: 20px;
+  gap: 24px;
+  padding: 24px;
   overflow-x: auto;
   overflow-y: hidden;
   -webkit-overflow-scrolling: touch;
@@ -192,8 +173,8 @@ body {
 .add-panel-btn {
   flex-shrink: 0;
   align-self: center;
-  min-width: 100px;
-  font-size: 20px;
+  min-width: 110px;
+  font-size: 22px;
 }
 
 /* ── Panel ── */
@@ -212,27 +193,26 @@ body {
 
 .panel-title {
   width: 100%;
-  padding: 8px 12px;
+  padding: 10px 14px;
   background: var(--ink);
   border: none;
   border-bottom: var(--ink-border);
   color: var(--neon);
-  font-family: inherit;
-  font-size: 15px;
-  font-weight: 700;
-  letter-spacing: 0.05em;
+  font-family: system-ui, -apple-system, sans-serif;
+  font-size: 16px;
+  font-weight: 800;
+  letter-spacing: 0.04em;
   text-transform: uppercase;
   flex-shrink: 0;
 }
 
 .panel-title:focus {
   outline: none;
-  background: #222;
+  background: #1e1e1e;
 }
 
 .panel-title::placeholder {
   color: #666;
-  text-transform: uppercase;
 }
 
 .icon-zone {
@@ -247,11 +227,9 @@ body {
   position: absolute;
   transform: translate(-50%, -50%);
   cursor: grab;
-  color: var(--ink);
-  font-size: 24px;
+  font-size: 32px;
   user-select: none;
   padding: 4px;
-  filter: drop-shadow(2px 2px 0 rgba(0,0,0,0.15));
 }
 
 .placed-icon:active {
@@ -260,14 +238,15 @@ body {
 
 .panel-caption {
   width: 100%;
-  height: 80px;
-  padding: 8px 12px;
+  height: 88px;
+  padding: 10px 14px;
   background: var(--surface2);
   border: none;
   border-top: var(--ink-border);
   color: var(--text);
-  font-family: system-ui, sans-serif;
-  font-size: 13px;
+  font-family: system-ui, -apple-system, sans-serif;
+  font-size: 14px;
+  line-height: 1.5;
   resize: none;
   flex-shrink: 0;
 }
@@ -283,9 +262,9 @@ body {
 
 /* ── Icon Sidebar ── */
 .sidebar {
-  width: 200px;
+  width: 220px;
   flex-shrink: 0;
-  background: var(--ink);
+  background: #1e1e1e;
   border-left: var(--ink-border);
   display: flex;
   flex-direction: column;
@@ -293,9 +272,9 @@ body {
 }
 
 .sidebar-label {
-  padding: 10px 12px 8px;
-  font-size: 13px;
-  font-weight: 700;
+  padding: 12px 14px 10px;
+  font-size: 14px;
+  font-weight: 800;
   letter-spacing: 0.1em;
   text-transform: uppercase;
   color: var(--neon);
@@ -303,11 +282,49 @@ body {
   flex-shrink: 0;
 }
 
+/* ── Color Picker ── */
+.color-picker-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 14px;
+  border-bottom: 2px solid #333;
+  flex-shrink: 0;
+}
+
+.color-picker-label {
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #aaa;
+}
+
+.color-picker {
+  width: 40px;
+  height: 32px;
+  border: 2px solid #555;
+  border-radius: 4px;
+  background: none;
+  cursor: pointer;
+  padding: 2px;
+}
+
+.color-picker::-webkit-color-swatch-wrapper {
+  padding: 0;
+}
+
+.color-picker::-webkit-color-swatch {
+  border: none;
+  border-radius: 2px;
+}
+
+/* ── Icon Grid ── */
 .icon-grid {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   gap: 2px;
-  padding: 6px;
+  padding: 8px;
   overflow-y: auto;
 }
 
@@ -318,20 +335,20 @@ body {
   aspect-ratio: 1;
   border-radius: 4px;
   cursor: pointer;
-  color: #ccc;
+  color: #dddddd;
+  font-size: 18px;
   transition: background 0.1s, color 0.1s;
   user-select: none;
-  font-size: 14px;
 }
 
 .icon-item:hover {
   background: #333;
-  color: var(--neon);
+  color: #ffffff;
 }
 
 .icon-item.selected {
   background: var(--accent);
-  color: #fff;
+  color: #ffffff;
   box-shadow: 0 0 8px var(--accent-glow);
 }
 
@@ -357,18 +374,18 @@ body {
   border: var(--ink-border);
   box-shadow: var(--ink-shadow);
   border-radius: 0;
-  padding: 24px;
+  padding: 28px;
   width: 100%;
-  max-width: 400px;
+  max-width: 420px;
   display: flex;
   flex-direction: column;
-  gap: 16px;
+  gap: 18px;
 }
 
 .modal-title {
   font-size: 22px;
   font-weight: 900;
-  letter-spacing: 0.06em;
+  letter-spacing: 0.04em;
   text-transform: uppercase;
   color: var(--text);
   margin: 0;
@@ -376,10 +393,8 @@ body {
 
 .modal-message {
   color: var(--text);
-  font-family: system-ui, sans-serif;
-  font-size: 15px;
+  font-size: 16px;
   line-height: 1.5;
-  font-weight: normal;
 }
 
 .modal-actions {
@@ -390,10 +405,8 @@ body {
 
 .modal-empty {
   color: var(--text-muted);
-  font-family: system-ui, sans-serif;
   text-align: center;
   padding: 16px 0;
-  font-weight: normal;
 }
 
 .story-list {

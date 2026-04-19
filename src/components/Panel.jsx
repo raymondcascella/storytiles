@@ -62,7 +62,7 @@ export function Panel({ panel, selectedIcon, onTitleChange, onCaptionChange, onI
           <span
             key={icon.id}
             className="placed-icon"
-            style={{ left: `${icon.x}%`, top: `${icon.y}%` }}
+            style={{ left: `${icon.x}%`, top: `${icon.y}%`, color: icon.color ?? '#000000' }}
             draggable
             onDragStart={e => handleIconDragStart(e, icon)}
           >
