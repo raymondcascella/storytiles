@@ -69,6 +69,11 @@ body {
   opacity: 0.85;
 }
 
+.btn:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+
 /* ── App Layout ── */
 .app {
   display: flex;
@@ -253,6 +258,11 @@ body {
 
 .icon-item:hover {
   background: var(--surface2);
+}
+
+.icon-item:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
 }
 
 .icon-item.selected {
