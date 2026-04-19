@@ -1,6 +1,6 @@
 import { Panel } from './Panel'
 
-export function StoryEditor({ story, selectedIcon, onTitleChange, onCaptionChange, onIconPlace, onIconMove, onAddPanel }) {
+export function StoryEditor({ story, selectedIcon, onTitleChange, onCaptionChange, onIconPlace, onIconMove, onAddPanel, onRemovePanel }) {
   return (
     <div className="story-editor">
       <div className="panels-container">
@@ -13,6 +13,7 @@ export function StoryEditor({ story, selectedIcon, onTitleChange, onCaptionChang
             onCaptionChange={onCaptionChange}
             onIconPlace={onIconPlace}
             onIconMove={onIconMove}
+            onRemove={onRemovePanel}
           />
         ))}
         <button className="btn btn-secondary add-panel-btn" onClick={onAddPanel}>

@@ -1,7 +1,7 @@
 import { useRef } from 'react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
-export function Panel({ panel, selectedIcon, onTitleChange, onCaptionChange, onIconPlace, onIconMove }) {
+export function Panel({ panel, selectedIcon, onTitleChange, onCaptionChange, onIconPlace, onIconMove, onRemove }) {
   const zoneRef = useRef(null)
 
   function getRelativeCoords(e) {
@@ -45,12 +45,15 @@ export function Panel({ panel, selectedIcon, onTitleChange, onCaptionChange, onI
 
   return (
     <div className="panel">
-      <input
-        className="panel-title"
-        value={panel.title}
-        onChange={e => onTitleChange(panel.id, e.target.value)}
-        placeholder="Panel title"
-      />
+      <div className="panel-header">
+        <input
+          className="panel-title"
+          value={panel.title}
+          onChange={e => onTitleChange(panel.id, e.target.value)}
+          placeholder="Panel title"
+        />
+        <button className="panel-remove-btn" onClick={() => onRemove(panel.id)} title="Remove panel">✕</button>
+      </div>
       <div
         ref={zoneRef}
         className="icon-zone"

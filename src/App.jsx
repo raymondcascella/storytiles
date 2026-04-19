@@ -120,6 +120,11 @@ export default function App() {
     setIsDirty(true)
   }
 
+  function handleRemovePanel(panelId) {
+    setCurrentStory(prev => ({ ...prev, panels: prev.panels.filter(p => p.id !== panelId) }))
+    setIsDirty(true)
+  }
+
   function handleSelectIcon(iconName) {
     setSelectedIcon(prev => prev === iconName ? null : iconName)
   }
@@ -140,6 +145,7 @@ export default function App() {
           onIconPlace={handleIconPlace}
           onIconMove={handleIconMove}
           onAddPanel={handleAddPanel}
+          onRemovePanel={handleRemovePanel}
         />
         <IconSidebar
           selectedIcon={selectedIcon}
