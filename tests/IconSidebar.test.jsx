@@ -3,40 +3,24 @@ import { IconSidebar } from '../src/components/IconSidebar'
 
 const noop = () => {}
 const baseProps = {
-  isOpen: true,
   selectedIcon: null,
   onSelectIcon: noop,
-  onClose: noop,
 }
 
-test('renders nothing when closed', () => {
-  const { container } = render(<IconSidebar {...baseProps} isOpen={false} />)
-  expect(container.firstChild).toBeNull()
-})
-
-test('renders icon grid when open', () => {
+test('renders icon grid', () => {
   render(<IconSidebar {...baseProps} />)
-  // ICONS has 37 items; all should be rendered
   const items = document.querySelectorAll('.icon-item')
   expect(items.length).toBeGreaterThan(0)
 })
 
-test('renders close button', () => {
+test('renders sidebar label', () => {
   render(<IconSidebar {...baseProps} />)
-  expect(screen.getByText('✕')).toBeInTheDocument()
-})
-
-test('calls onClose when close button clicked', () => {
-  const fn = vi.fn()
-  render(<IconSidebar {...baseProps} onClose={fn} />)
-  fireEvent.click(screen.getByText('✕'))
-  expect(fn).toHaveBeenCalledOnce()
+  expect(screen.getByText('Icons')).toBeInTheDocument()
 })
 
 test('calls onSelectIcon with icon name when icon clicked', () => {
   const fn = vi.fn()
   render(<IconSidebar {...baseProps} onSelectIcon={fn} />)
-  // click the first icon item
   const firstItem = document.querySelector('.icon-item')
   fireEvent.click(firstItem)
   expect(fn).toHaveBeenCalledWith(expect.any(String))

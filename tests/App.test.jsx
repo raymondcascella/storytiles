@@ -52,12 +52,9 @@ test('Load Story opens load modal', () => {
   expect(screen.getByText('No saved stories.')).toBeInTheDocument()
 })
 
-test('Icons button toggles icon sidebar', () => {
+test('icon sidebar is always visible', () => {
   render(<App />)
-  fireEvent.click(screen.getByText('Icons'))
   expect(document.querySelector('.sidebar')).toBeInTheDocument()
-  fireEvent.click(screen.getByText('Icons'))
-  expect(document.querySelector('.sidebar')).toBeNull()
 })
 
 test('canceling save confirm dismisses dialog', () => {

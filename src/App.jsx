@@ -24,7 +24,6 @@ export default function App() {
   const [isDirty, setIsDirty] = useState(false)
   const [confirmState, setConfirmState] = useState(null)
   const [showLoad, setShowLoad] = useState(false)
-  const [sidebarOpen, setSidebarOpen] = useState(false)
   const [selectedIcon, setSelectedIcon] = useState(null)
 
   function withDirtyCheck(action) {
@@ -42,7 +41,6 @@ export default function App() {
       setCurrentStory(createNewStory())
       setIsDirty(false)
       setSelectedIcon(null)
-      setSidebarOpen(false)
     })
   }
 
@@ -69,7 +67,6 @@ export default function App() {
     setIsDirty(false)
     setShowLoad(false)
     setSelectedIcon(null)
-    setSidebarOpen(false)
   }
 
   function handleTitleChange(panelId, newTitle) {
@@ -133,24 +130,21 @@ export default function App() {
         onSaveStory={handleSaveStory}
         onLoadStory={handleLoadStory}
       />
-      <button className="btn btn-secondary sidebar-toggle" onClick={() => setSidebarOpen(o => !o)}>
-        Icons
-      </button>
-      <StoryEditor
-        story={currentStory}
-        selectedIcon={selectedIcon}
-        onTitleChange={handleTitleChange}
-        onCaptionChange={handleCaptionChange}
-        onIconPlace={handleIconPlace}
-        onIconMove={handleIconMove}
-        onAddPanel={handleAddPanel}
-      />
-      <IconSidebar
-        isOpen={sidebarOpen}
-        selectedIcon={selectedIcon}
-        onSelectIcon={handleSelectIcon}
-        onClose={() => setSidebarOpen(false)}
-      />
+      <div className="editor-layout">
+        <StoryEditor
+          story={currentStory}
+          selectedIcon={selectedIcon}
+          onTitleChange={handleTitleChange}
+          onCaptionChange={handleCaptionChange}
+          onIconPlace={handleIconPlace}
+          onIconMove={handleIconMove}
+          onAddPanel={handleAddPanel}
+        />
+        <IconSidebar
+          selectedIcon={selectedIcon}
+          onSelectIcon={handleSelectIcon}
+        />
+      </div>
       {showLoad && (
         <LoadModal
           stories={stories.loadAll()}

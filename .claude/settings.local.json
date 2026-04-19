@@ -1,0 +1,30 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(npm create *)",
+      "Bash(npx --yes create-vite@latest . --template react)",
+      "Bash(npm --version)",
+      "Bash(npm install *)",
+      "Bash(create-vite . --template react --overwrite)",
+      "Bash(timeout 10 npm run dev)",
+      "Bash(npm test *)",
+      "Bash(git init *)",
+      "Bash(git add *)",
+      "Bash(npm ls *)",
+      "Bash(npm run *)",
+      "Bash(curl -s http://localhost:5173/)",
+      "Bash(node *)",
+      "Bash(git commit *)",
+      "Bash(xargs grep *)",
+      "Bash(tee test_output.txt)",
+      "Bash(npx vitest *)",
+      "Bash(cat)",
+      "Read(//tmp/**)",
+      "Bash(npx eslint *)",
+      "Bash(gh auth *)",
+      "Bash(gh repo *)",
+      "Bash(gh api *)",
+      "Bash(git push *)"
+    ]
+  }
+}
