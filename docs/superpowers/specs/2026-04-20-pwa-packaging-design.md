@@ -24,13 +24,13 @@ Configured inline in `vite.config.js` via the plugin (no static `manifest.json` 
 
 | Field | Value |
 |---|---|
-| `name` | StoryTiles |
-| `short_name` | StoryTiles |
+| `name` | Story Tiles |
+| `short_name` | Story Tiles |
 | `start_url` | `/storytiles/` |
 | `scope` | `/storytiles/` |
 | `display` | standalone |
-| `theme_color` | #000000 |
-| `background_color` | #000000 |
+| `theme_color` | #F5F0E8 |
+| `background_color` | #F5F0E8 |
 | `orientation` | portrait |
 
 No `screenshots` or `shortcuts` — placeholder values would fail PWABuilder validation.
