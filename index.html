@@ -2,9 +2,11 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="icon" type="image/png" href="/storytiles/favicon.png" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>storytiles</title>
+    <link rel="manifest" href="/storytiles/manifest.json" />
+    <title>Story Tiles</title>
+    <script>navigator.serviceWorker.register('/storytiles/sw.js')</script>
   </head>
   <body>
     <div id="root"></div>

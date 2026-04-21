@@ -1,0 +1,34 @@
+{
+  "name": "Story Tiles",
+  "short_name": "Story Tiles",
+  "description": "Build visual stories with tiles and icons",
+  "start_url": "/storytiles/",
+  "scope": "/storytiles/",
+  "display": "standalone",
+  "orientation": "any",
+  "lang": "en",
+  "dir": "auto",
+  "theme_color": "#F5F0E8",
+  "background_color": "#F5F0E8",
+  "icons": [
+    {
+      "src": "/storytiles/icons/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "/storytiles/icons/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "/storytiles/icons/icon-512-maskable.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "maskable"
+    }
+  ],
+  "prefer_related_applications": false
+}

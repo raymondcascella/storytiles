@@ -1,3 +1,5 @@
+@import '@fontsource/bangers';
+
 *, *::before, *::after {
   box-sizing: border-box;
   margin: 0;
@@ -61,10 +63,10 @@ body {
   border: var(--ink-border);
   border-radius: 0;
   box-shadow: 3px 3px 0 var(--ink);
-  font-family: system-ui, -apple-system, sans-serif;
-  font-size: 15px;
-  font-weight: 700;
-  letter-spacing: 0.03em;
+  font-family: 'Bangers', system-ui, sans-serif;
+  font-size: 17px;
+  font-weight: 400;
+  letter-spacing: 0.08em;
   text-transform: uppercase;
   cursor: pointer;
   transition: transform 0.08s, box-shadow 0.08s;
@@ -142,9 +144,10 @@ body {
 .toolbar-title {
   margin-left: auto;
   color: var(--neon);
-  font-size: 18px;
-  font-weight: 900;
-  letter-spacing: 0.08em;
+  font-family: 'Bangers', system-ui, sans-serif;
+  font-size: 22px;
+  font-weight: 400;
+  letter-spacing: 0.1em;
   text-transform: uppercase;
 }
 
@@ -196,7 +199,7 @@ body {
   background: var(--panel-bg);
   border: var(--ink-border);
   box-shadow: var(--ink-shadow);
-  border-radius: 0;
+  border-radius: 12px;
   display: flex;
   flex-direction: column;
   overflow: hidden;
