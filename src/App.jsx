@@ -71,7 +71,7 @@ export default function App() {
     setSelectedIcon(null)
   }
 
-  function handleTitleChange(_id, newTitle) {
+  function handleTitleChange(newTitle) {
     setCurrentStory(prev => ({ ...prev, title: newTitle }))
     setIsDirty(true)
   }
@@ -141,6 +141,9 @@ export default function App() {
   return (
     <div className="app">
       <Toolbar
+        title={currentStory.title}
+        isDirty={isDirty}
+        onTitleChange={handleTitleChange}
         onCreateStory={handleCreateStory}
         onSaveStory={handleSaveStory}
         onLoadStory={handleLoadStory}
