@@ -28,10 +28,11 @@ export function StoryEditor({ story, selectedIcon, onTitleChange, onCaptionChang
         onDragOver={e => e.preventDefault()}
         onDrop={handleContainerDrop}
       >
-        {story.panels.map(panel => (
+        {story.panels.map((panel, idx) => (
           <Panel
             key={panel.id}
             panel={panel}
+            panelIndex={idx}
             selectedIcon={selectedIcon}
             onCaptionChange={onCaptionChange}
             onIconPlace={onIconPlace}
