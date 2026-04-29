@@ -37,12 +37,14 @@ it('calls onRemoveIcon on context menu of placed icon', () => {
 
 it('calls onRemoveIcon on double-click of placed icon', () => {
   vi.useFakeTimers()
+  vi.setSystemTime(new Date(1700000000000))
   const onRemoveIcon = vi.fn()
   const panel = makePanel({ icons: [{ id: 'i1', iconName: 'star', x: 50, y: 50, color: '#000', size: 'small' }] })
   render(<Panel panel={panel} panelIndex={0} selectedIcon={null} onCaptionChange={noop} onIconPlace={noop} onIconMove={noop} onRemoveIcon={onRemoveIcon} onRemove={noop} />)
   const iconEl = screen.getByTitle('star')
   fireEvent.click(iconEl)
-  vi.setSystemTime(new Date(1100))
+  expect(onRemoveIcon).not.toHaveBeenCalled()
+  vi.setSystemTime(new Date(1700000000200))
   fireEvent.click(iconEl)
   expect(onRemoveIcon).toHaveBeenCalledWith('p1', 'i1')
   vi.useRealTimers()

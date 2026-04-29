@@ -3,7 +3,6 @@ import { Panel } from '../src/components/Panel'
 
 const basePanel = {
   id: 'p1',
-  title: 'My Panel',
   caption: 'A caption',
   icons: [],
 }
@@ -11,28 +10,18 @@ const basePanel = {
 const noop = () => {}
 const baseProps = {
   panel: basePanel,
+  panelIndex: 0,
   selectedIcon: null,
-  onTitleChange: noop,
   onCaptionChange: noop,
   onIconPlace: noop,
   onIconMove: noop,
+  onRemoveIcon: noop,
+  onRemove: noop,
 }
-
-test('renders title input with panel title', () => {
-  render(<Panel {...baseProps} />)
-  expect(screen.getByDisplayValue('My Panel')).toBeInTheDocument()
-})
 
 test('renders caption textarea with panel caption', () => {
   render(<Panel {...baseProps} />)
   expect(screen.getByDisplayValue('A caption')).toBeInTheDocument()
-})
-
-test('calls onTitleChange when title input changes', () => {
-  const fn = vi.fn()
-  render(<Panel {...baseProps} onTitleChange={fn} />)
-  fireEvent.change(screen.getByDisplayValue('My Panel'), { target: { value: 'New Title' } })
-  expect(fn).toHaveBeenCalledWith('p1', 'New Title')
 })
 
 test('calls onCaptionChange when caption changes', () => {
