@@ -1,6 +1,6 @@
 import { Panel } from './Panel'
 
-export function StoryEditor({ story, selectedIcon, onTitleChange, onCaptionChange, onIconPlace, onIconMove, onRemoveIcon, onAddPanel, onRemovePanel }) {
+export function StoryEditor({ story, selectedIcon, onCaptionChange, onIconPlace, onIconMove, onRemoveIcon, onAddPanel, onRemovePanel }) {
   function handleContainerWheel(e) {
     e.preventDefault()
     e.currentTarget.scrollLeft += e.deltaY + e.deltaX
@@ -16,12 +16,6 @@ export function StoryEditor({ story, selectedIcon, onTitleChange, onCaptionChang
 
   return (
     <div className="story-editor">
-      <input
-          className="story-title"
-          value={story.title}
-          onChange={e => onTitleChange(story.id, e.target.value)}
-          placeholder="Story title"
-        />
       <div
         className="panels-container"
         onWheel={handleContainerWheel}
@@ -41,9 +35,10 @@ export function StoryEditor({ story, selectedIcon, onTitleChange, onCaptionChang
             onRemove={onRemovePanel}
           />
         ))}
-        <button className="btn btn-secondary add-panel-btn" onClick={onAddPanel}>
-          + Add Panel
-        </button>
+        <div className="add-panel-card" onClick={onAddPanel} role="button" aria-label="Add panel" tabIndex={0}
+          onKeyDown={e => e.key === 'Enter' && onAddPanel()}>
+          +
+        </div>
       </div>
     </div>
   )
