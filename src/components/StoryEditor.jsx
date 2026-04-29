@@ -35,10 +35,9 @@ export function StoryEditor({ story, selectedIcon, onCaptionChange, onIconPlace,
             onRemove={onRemovePanel}
           />
         ))}
-        <div className="add-panel-card" onClick={onAddPanel} role="button" aria-label="Add panel" tabIndex={0}
-          onKeyDown={e => e.key === 'Enter' && onAddPanel()}>
+        <button className="add-panel-card" onClick={onAddPanel} aria-label="Add panel">
           +
-        </div>
+        </button>
       </div>
     </div>
   )
