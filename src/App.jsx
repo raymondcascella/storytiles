@@ -3,7 +3,7 @@ import { useStories } from './hooks/useStories'
 import { Toolbar } from './components/Toolbar'
 import { ConfirmModal } from './components/ConfirmModal'
 import { LoadModal } from './components/LoadModal'
-import { IconSidebar } from './components/IconSidebar'
+import { IconTray } from './components/IconTray'
 import { StoryEditor } from './components/StoryEditor'
 
 function createPanel() {
@@ -27,12 +27,14 @@ export default function App() {
   const [selectedIcon, setSelectedIcon] = useState(null)
   const [iconColor, setIconColor] = useState('#000000')
   const [iconSize, setIconSize] = useState('small')
+  const [trayOpen, setTrayOpen] = useState(false)
 
   function withDirtyCheck(action) {
     if (!isDirty) { action(); return }
     setConfirmState({
       message: 'You have unsaved changes. Continue?',
       confirmLabel: 'Continue',
+      variant: 'destructive',
       onConfirm: () => { setConfirmState(null); action() },
       onCancel: () => setConfirmState(null),
     })
@@ -51,6 +53,7 @@ export default function App() {
     setConfirmState({
       message: `Save as "${resolved}"?`,
       confirmLabel: 'Save',
+      variant: 'save',
       onConfirm: () => {
         stories.save(currentStory)
         setIsDirty(false)
@@ -135,7 +138,7 @@ export default function App() {
   }
 
   function handleSelectIcon(iconName) {
-    setSelectedIcon(prev => prev === iconName ? null : iconName)
+    setSelectedIcon(iconName)
   }
 
   return (
@@ -152,7 +155,6 @@ export default function App() {
         <StoryEditor
           story={currentStory}
           selectedIcon={selectedIcon}
-          onTitleChange={handleTitleChange}
           onCaptionChange={handleCaptionChange}
           onIconPlace={handleIconPlace}
           onIconMove={handleIconMove}
@@ -160,15 +162,17 @@ export default function App() {
           onAddPanel={handleAddPanel}
           onRemovePanel={handleRemovePanel}
         />
-        <IconSidebar
-          selectedIcon={selectedIcon}
-          onSelectIcon={handleSelectIcon}
-          iconColor={iconColor}
-          onColorChange={setIconColor}
-          iconSize={iconSize}
-          onSizeChange={setIconSize}
-        />
       </div>
+      <IconTray
+        isOpen={trayOpen}
+        onToggle={() => setTrayOpen(o => !o)}
+        selectedIcon={selectedIcon}
+        onSelectIcon={handleSelectIcon}
+        iconColor={iconColor}
+        onColorChange={setIconColor}
+        iconSize={iconSize}
+        onSizeChange={setIconSize}
+      />
       {showLoad && (
         <LoadModal
           stories={stories.loadAll()}
@@ -180,6 +184,7 @@ export default function App() {
       <ConfirmModal
         message={confirmState?.message}
         confirmLabel={confirmState?.confirmLabel}
+        variant={confirmState?.variant ?? 'neutral'}
         onConfirm={confirmState?.onConfirm}
         onCancel={confirmState?.onCancel}
       />

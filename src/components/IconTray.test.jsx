@@ -2,6 +2,11 @@ import { render, screen } from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
 import { IconTray } from './IconTray'
 
+vi.mock('../data/icons', async () => {
+  const { faStar, faHeart, faBolt } = await import('@fortawesome/free-solid-svg-icons')
+  return { ICONS: [faStar, faHeart, faBolt] }
+})
+
 const noop = () => {}
 
 function renderTray(overrides = {}) {
