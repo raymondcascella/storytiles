@@ -11,22 +11,26 @@ export function LoadModal({ stories: initial, onLoad, onDelete, onClose }) {
   return (
     <div className="modal-backdrop">
       <div className="modal">
-        <h2 className="modal-title">Load Story</h2>
-        {stories.length === 0 ? (
-          <p className="modal-empty">No saved stories.</p>
-        ) : (
-          <ul className="story-list">
-            {stories.map(story => (
-              <li key={story.title} className="story-list-item">
-                <button className="story-item btn" onClick={() => onLoad(story)}>
-                  {story.title}
-                </button>
-                <button className="story-delete-btn" onClick={() => handleDelete(story.title)}>✕</button>
-              </li>
-            ))}
-          </ul>
-        )}
-        <button className="btn btn-secondary modal-cancel" onClick={onClose}>Cancel</button>
+        <div className="modal-stripe" style={{ background: '#1847d4' }} />
+        <div className="modal-body">
+          <h2 className="modal-title">Load Story</h2>
+          {stories.length === 0 ? (
+            <p className="modal-empty">No saved stories.</p>
+          ) : (
+            <ul className="story-list">
+              {stories.map(story => (
+                <li key={story.title} className="story-card">
+                  <button className="story-card-load" onClick={() => onLoad(story)}>
+                    <span className="story-card-title">{story.title}</span>
+                    <span className="story-card-meta">{story.panels.length} panels</span>
+                  </button>
+                  <button className="story-card-delete" onClick={() => handleDelete(story.title)}>✕</button>
+                </li>
+              ))}
+            </ul>
+          )}
+          <button className="btn btn-ghost modal-cancel" onClick={onClose}>Cancel</button>
+        </div>
       </div>
     </div>
   )

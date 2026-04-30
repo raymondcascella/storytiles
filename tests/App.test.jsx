@@ -37,7 +37,7 @@ test('Save Story shows confirm dialog', () => {
 test('confirming save clears dirty state (no unsaved-changes warning after)', () => {
   render(<App />)
   fireEvent.click(screen.getByRole('button', { name: /^save$/i }))
-  fireEvent.click(document.querySelector('.modal .btn-primary'))
+  fireEvent.click(document.querySelector('.modal-actions .btn-confirm'))
   fireEvent.click(screen.getByRole('button', { name: /^new$/i }))
   expect(screen.queryByText('You have unsaved changes')).toBeNull()
 })
@@ -63,6 +63,6 @@ test('tray toggle button is always visible', () => {
 test('canceling save confirm dismisses dialog', () => {
   render(<App />)
   fireEvent.click(screen.getByRole('button', { name: /^save$/i }))
-  fireEvent.click(document.querySelector('.modal .btn-secondary'))
+  fireEvent.click(document.querySelector('.modal-actions .btn-ghost'))
   expect(screen.queryByText(/Save as/)).toBeNull()
 })
